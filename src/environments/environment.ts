@@ -2,7 +2,10 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 import { AuthConfig } from 'angular-oauth2-oidc';
-
+export const environment = {
+  production: false,
+  stravaBaseUrl: 'https://www.strava.com/api/v3'
+};
 
 /*
  * For easier debugging in development mode, you can import the following file
