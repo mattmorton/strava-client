@@ -1,8 +1,6 @@
-<button (click)="initCodeFlow()">Init Code Flow</button>
-
-<button (click)="revokeTokenAndLogout()">LogOut</button>
-
-
-<div *ngIf="athlete$ | async as athlete">
-  {{ athlete | json }}
-</div>
+<app-header></app-header>
+<section class="section">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</section>

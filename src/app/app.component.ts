@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { Observable } from 'rxjs';
-import { StravaService } from './services/strava.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +9,13 @@ import { StravaService } from './services/strava.service';
 })
 export class AppComponent {
 
-  public athlete$: Observable<any>;
+  public isLoggedIn: Observable<any>;
 
   constructor(
-    private authService: AuthService,
-    private stravaService: StravaService
+    private authService: AuthService
   ) {
-    this.athlete$ = this.stravaService.athlete$;
+    this.authService.initAuthLibrary();
+    this.isLoggedIn = this.authService.isAuthenticated;
   }
 
-  initCodeFlow() {
-    this.authService.initCodeFlow();
-  }
-
-  revokeTokenAndLogout() {
-    this.authService.revokeTokenAndLogout();
-  }
 }

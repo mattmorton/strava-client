@@ -1,1 +1,18 @@
-<p>athlete-detail works!</p>
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-third">
+      <div *ngIf="data$ | async as data">
+        <app-athlete-summary [data]="data"></app-athlete-summary>
+      </div>
+    </div>
+    <div class="column is-two-thirds">
+      <div *ngIf="activities$ | async as activities">
+        <div *ngFor="let activity of activities">
+          <app-activity-detail [activity]="activity"></app-activity-detail>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

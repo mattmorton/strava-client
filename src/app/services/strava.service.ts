@@ -1,17 +1,61 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError, Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { tap, catchError, map } from 'rxjs/operators';
+import { Athlete } from '../models/athlete.model';
+import { Activity } from '../models/activity.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StravaService {
 
-  public athlete$: BehaviorSubject<any> = new BehaviorSubject(null);
+  private athlete$: BehaviorSubject<Athlete> = new BehaviorSubject(JSON.parse(localStorage.getItem('athlete')));
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  set athlete(athlete: any) {
-    this.athlete$.next(athlete)
+  public makeAuthenticatedRequest(method: string = 'GET', path: string) {
+    let url = `${environment.stravaBaseUrl}/${path}`;
+    return this.http.request(method, url).pipe(
+      tap((res) => console.log(res)),
+      catchError(this.handleError)
+    )
+  }
+
+  public getAuthenticatedAthlete(): Observable<Athlete> {
+    return this.makeAuthenticatedRequest('GET', 'athlete') as Observable<Athlete>;
+  }
+
+  public getAthleteStats(id: number): Observable<Athlete> {
+    return this.makeAuthenticatedRequest('GET', `athletes/${id}/stats`) as Observable<Athlete>;
+  }
+
+  public getActivities(): Observable<Activity[]> {
+    return this.makeAuthenticatedRequest('GET', 'athlete/activities') as Observable<Activity[]>;
+
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+  public set athlete(value: Athlete) {
+    this.athlete$.next(value);
+  }
+
+  public get athlete(): Athlete {
+    return this.athlete$.value;
   }
 
 }
