@@ -6,6 +6,7 @@ import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 import { ActivityMapComponent } from './activity-map/activity-map.component';
 import { ActivitySummaryComponent } from './activity-summary/activity-summary.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ActivitySummaryComponent } from './activity-summary/activity-summary.co
   imports: [
     CommonModule,
     ActivityRoutingModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    SharedModule
   ],
   exports: [
     ActivityDetailComponent,

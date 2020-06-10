@@ -9,9 +9,18 @@ export class ActivitySummaryComponent implements OnInit {
 
   @Input() data: any;
 
-  constructor() { }
+  constructor() {
+
+    
+   }
 
   ngOnInit(): void {
+    console.log(this.data);
+  }
+
+  switchTab(activity: string) {
+    console.log(activity);
+    
   }
 
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class AuthService {
   public isAuthenticated = this.isAuthenticated$.asObservable();
 
   constructor(
-    private oauthService: OAuthService
+    private oauthService: OAuthService,
+    private router: Router
   ) {
   }
 
@@ -32,8 +34,17 @@ export class AuthService {
 
   private handleAuthEvents() {
     return this.oauthService.events.subscribe((event) => {
-      console.log('auth event!', event);
       this.isAuthenticated$.next(this.hasValidAccessToken())
+      switch (event.type) {
+        case 'token_received':
+          this.router.navigate(['athlete/detail']);
+          break;
+        case 'logout':
+          this.router.navigate(['login']);
+          break;
+        default:
+          break;
+      }
     })
   }
   
@@ -46,7 +57,6 @@ export class AuthService {
   }
 
   public logOut() {
-    this.isAuthenticated$.next(false);
     return this.oauthService.logOut();
   }
 

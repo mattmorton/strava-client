@@ -1,7 +1,65 @@
 <div class="tabs is-fullwidth is-centered" *ngIf="data">
   <ul>
-    <li class="is-active"><a>Run</a></li>
-    <li><a>Ride</a></li>
-    <li><a>Swim</a></li>
+    <li class="is-active">
+      <a (click)="switchTab('run')">
+        <span class="icon is-small"><i class="fas fa-running" aria-hidden="true"></i></span>
+        <span>Run</span>
+      </a>
+    </li>
+    <li>
+      <a (click)="switchTab('ride')">
+        <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+        <span>Ride</span>
+      </a>
+    </li>
+    <li>
+      <a (click)="switchTab('swim')">
+        <span class="icon is-small"><i class="fas fa-swimmer" aria-hidden="true"></i></span>
+        <span>Swim</span>
+      </a>
+    </li>
   </ul>
 </div>
+<h5 class="title is-5 has-text-centered">All Time Statistics</h5>
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Count</p>
+      <p class="subtitle">{{data.stats.all_run_totals.count}}</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Distance</p>
+      <p class="subtitle">{{data.stats.all_run_totals.distance | distance:0 | number }} km</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Elevation</p>
+      <p class="subtitle">{{data.stats.all_run_totals.elevation_gain | number}} m</p>
+    </div>
+  </div>
+</nav>
+
+<h5 class="title is-5 has-text-centered">Recent Statistics (4 weeks)</h5>
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Count</p>
+      <p class="subtitle">{{data.stats.recent_run_totals.count}}</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Distance</p>
+      <p class="subtitle">{{data.stats.recent_run_totals.distance | distance:0 | number }} km</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Elevation</p>
+      <p class="subtitle">{{data.stats.recent_run_totals.elevation_gain | number}} m</p>
+    </div>
+  </div>
+</nav>

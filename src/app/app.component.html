@@ -1,6 +1,4 @@
-<app-header></app-header>
-<section class="section">
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-</section>
+
+  <app-header *ngIf="isLoggedIn | async"></app-header>
+  <router-outlet></router-outlet>
+

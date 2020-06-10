@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AthleteDetailComponent } from './athlete-detail/athlete-detail.component';
 import { AthleteSummaryComponent } from './athlete-summary/athlete-summary.component';
 
-
 const routes: Routes = [
   {
     path: 'detail',
