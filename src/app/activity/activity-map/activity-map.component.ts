@@ -26,8 +26,8 @@ export class ActivityMapComponent implements OnInit, AfterViewInit {
     this.options = {
       mapTypeId: 'roadmap',
       zoomControl: false,
-      scrollwheel: false,
-      disableDoubleClickZoom: true
+      mapTypeControl: false,
+      streetViewControl: false
       
     }
     this.path.map((x) => {
