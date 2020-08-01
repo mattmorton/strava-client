@@ -49,6 +49,7 @@ export class AuthService {
   }
   
   public initCodeFlow() {
+    console.log('why not working!!')
     return this.oauthService.initCodeFlow();
   }
 

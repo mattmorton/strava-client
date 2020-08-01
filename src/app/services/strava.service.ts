@@ -20,7 +20,6 @@ export class StravaService {
   public makeAuthenticatedRequest(method: string = 'GET', path: string) {
     let url = `${environment.stravaBaseUrl}/${path}`;
     return this.http.request(method, url).pipe(
-      tap((res) => console.log(res)),
       catchError(this.handleError)
     )
   }

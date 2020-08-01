@@ -1,7 +1,7 @@
 <div class="card" *ngIf="activity">
   <header class="card-header">
     <p class="card-header-title">
-      {{ activity.name }} @ {{ activity.start_date | date:'MMM d, y, h:mm' }}
+      {{ activity.name }} | {{ activity.start_date | date:'MMM d, y, h:mm a' }}
     </p>
     
   </header>

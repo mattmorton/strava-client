@@ -34,7 +34,7 @@ export class AthleteDetailComponent implements OnInit {
     )
     this.activities$ = this.stravaService.getActivities().pipe(
       retry(2),
-      map((res) => res.slice(0, 5)),
+      map((res) => res.slice(0, 50)),
       catchError((e) => {
         return throwError(e)
       })
