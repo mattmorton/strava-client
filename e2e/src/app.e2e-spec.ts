@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('performance-analysis-client app is running!');
+    expect(page.getTitleText()).toEqual('strava-client app is running!');
   });
 
   afterEach(async () => {

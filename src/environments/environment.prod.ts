@@ -4,7 +4,7 @@ export const environment = {
   stravaBaseUrl: 'https://www.strava.com/api/v3',
   stravaOAuth: {
     clientId: '45694',
-    redirectUri: 'http://localhost:4200/login',
+    redirectUri: 'https://strava.mattmorton.info/login',
     issuer: 'https://www.strava.com',
     scope: 'activity:read_all,profile:read_all',
     responseType: 'code',

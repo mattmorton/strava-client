@@ -3,7 +3,7 @@
   "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "performance-analysis-client": {
+    "strava-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/performance-analysis-client",
+            "outputPath": "dist/strava-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "performance-analysis-client:build"
+            "browserTarget": "strava-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "performance-analysis-client:build:production"
+              "browserTarget": "strava-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "performance-analysis-client:build"
+            "browserTarget": "strava-client:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "performance-analysis-client:serve"
+            "devServerTarget": "strava-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "performance-analysis-client:serve:production"
+              "devServerTarget": "strava-client:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "performance-analysis-client"
+  "defaultProject": "strava-client"
 }
