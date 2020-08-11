@@ -6,27 +6,29 @@ A [Strava](https://www.strava.com/) client built with Angular. Login to see deta
 
 ## Details
 
-- Authenticates Strava users with oauth flow and implements the [Strava API](http://developers.strava.com/)
-- Google Map plugin to display running routes
-- [Bulma](https://bulma.io/) CSS framework for basic styling
+- Authenticates Strava users with oauth flow.
+- Integrate with Strava API to get various user activities.
+- Google Map plugin to display activity routes.
+- [Bulma](https://bulma.io/) CSS framework for basic styling.
+- Minimal CI/CD flow with Jenkins.
 
 ## Build
 
-1. Create an environment.ts and environment.prod.ts file in src/environments and populate with the Strava app details:
+1. Create an environment.ts and environment.prod.ts file in src/environments and populate with the Strava app details created [here](https://www.strava.com/settings/api):
 ```javascript
     export const environment = {
       production: true,
       stravaBaseUrl: 'https://www.strava.com/api/v3',
       stravaOAuth: {
-        clientId: <clientId>,
-        redirectUri: <clientId>,
+        clientId: {{clientId}},
+        redirectUri: {{redirectUri}}/login,
         issuer: 'https://www.strava.com',
         scope: 'activity:read_all,profile:read_all',
         responseType: 'code',
         loginUrl: 'https://www.strava.com/oauth/authorize',
         oidc: false,
         tokenEndpoint: 'https://www.strava.com/oauth/token',
-        dummyClientSecret: <clientSecret>,
+        dummyClientSecret: {{clientSecret}},
         showDebugInformation: false,
         logoutUrl: 'https://www.strava.com/oauth/deauthorize',
         revocationEndpoint: 'https://www.strava.com/oauth/deauthorize'
