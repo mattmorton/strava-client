@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Athlete } from '../models/athlete.model';
-import { Activity } from '../models/activity.model';
+import { Activity, ActivityStats } from '../models/activity.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +28,8 @@ export class StravaService {
     return this.makeAuthenticatedRequest('GET', 'athlete') as Observable<Athlete>;
   }
 
-  public getAthleteStats(id: number): Observable<Athlete> {
-    return this.makeAuthenticatedRequest('GET', `athletes/${id}/stats`) as Observable<Athlete>;
+  public getAthleteStats(id: number): Observable<ActivityStats> {
+    return this.makeAuthenticatedRequest('GET', `athletes/${id}/stats`) as Observable<ActivityStats>;
   }
 
   public getActivities(): Observable<Activity[]> {

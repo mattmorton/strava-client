@@ -1,21 +1,15 @@
 <div class="tabs is-fullwidth is-centered" *ngIf="data">
   <ul>
-    <li class="is-active">
+    <li [ngClass]="(selectedTab==='run')?'is-active':''">
       <a (click)="switchTab('run')">
         <span class="icon is-small"><i class="fas fa-running" aria-hidden="true"></i></span>
         <span>Run</span>
       </a>
     </li>
-    <li>
+    <li [ngClass]="(selectedTab==='ride')?'is-active':''">
       <a (click)="switchTab('ride')">
         <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
         <span>Ride</span>
-      </a>
-    </li>
-    <li>
-      <a (click)="switchTab('swim')">
-        <span class="icon is-small"><i class="fas fa-swimmer" aria-hidden="true"></i></span>
-        <span>Swim</span>
       </a>
     </li>
   </ul>
@@ -25,19 +19,19 @@
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Count</p>
-      <p class="subtitle">{{data.stats.all_run_totals.count}}</p>
+      <p class="subtitle">{{allTimeDisplayData.count}}</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Distance</p>
-      <p class="subtitle">{{data.stats.all_run_totals.distance | distance:0 | number }} km</p>
+      <p class="subtitle">{{allTimeDisplayData.distance | distance:0 | number }} km</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Elevation</p>
-      <p class="subtitle">{{data.stats.all_run_totals.elevation_gain | number}} m</p>
+      <p class="subtitle">{{allTimeDisplayData.elevation_gain | number:'1.0-0' }} m</p>
     </div>
   </div>
 </nav>
@@ -47,19 +41,19 @@
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Count</p>
-      <p class="subtitle">{{data.stats.recent_run_totals.count}}</p>
+      <p class="subtitle">{{recentDisplayData.count}}</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Distance</p>
-      <p class="subtitle">{{data.stats.recent_run_totals.distance | distance:0 | number }} km</p>
+      <p class="subtitle">{{recentDisplayData.distance | distance:0 | number }} km</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Elevation</p>
-      <p class="subtitle">{{data.stats.recent_run_totals.elevation_gain | number}} m</p>
+      <p class="subtitle">{{recentDisplayData.elevation_gain | number:'1.0-0' }} m</p>
     </div>
   </div>
 </nav>
