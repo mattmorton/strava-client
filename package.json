@@ -16,7 +16,7 @@
     "@angular/compiler": "~12.2.16",
     "@angular/core": "~12.2.16",
     "@angular/forms": "~12.2.16",
-    "@angular/google-maps": "^10.2.7",
+    "@angular/google-maps": "^11.2.13",
     "@angular/localize": "^12.2.16",
     "@angular/platform-browser": "~12.2.16",
     "@angular/platform-browser-dynamic": "~12.2.16",
