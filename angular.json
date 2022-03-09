@@ -103,16 +103,22 @@
             "scripts": []
           }
         },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
             "devServerTarget": "strava-client:serve"
           },
           "configurations": {
             "production": {
               "devServerTarget": "strava-client:serve:production"
             }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
           }
         }
       }
