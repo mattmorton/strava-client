@@ -1,64 +1,44 @@
 import { Injectable } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(this.hasValidAccessToken());
+  private isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public isAuthenticated = this.isAuthenticated$.asObservable();
 
+  private token$: BehaviorSubject<string> = new BehaviorSubject(null)
+  public token = this.token$.asObservable();
+
   constructor(
-    private oauthService: OAuthService,
-    private router: Router
   ) {
-  }
-
-  public initAuthLibrary() {
-    this.configure();
-    this.tryLoginCodeFlow();
-    this.handleAuthEvents();
-  }
-
-  private configure() {
-    return this.oauthService.configure(environment.stravaOAuth);
-  }
-
-  private tryLoginCodeFlow() {
-    return this.oauthService.tryLoginCodeFlow();
-  }
-
-  private handleAuthEvents() {
-    return this.oauthService.events.subscribe((event) => {
-      this.isAuthenticated$.next(this.hasValidAccessToken())
-      switch (event.type) {
-        case 'token_received':
-          this.router.navigate(['athlete/detail']);
-          break;
-        case 'logout':
-          this.router.navigate(['login']);
-          break;
-        default:
-          break;
-      }
-    })
+    const tokenFromStorage = localStorage.getItem('token');
+    if (tokenFromStorage) {
+      this.setAuthenticatedUser(tokenFromStorage)
+    }
   }
   
   public initCodeFlow() {
-    console.log('why not working!!')
-    return this.oauthService.initCodeFlow();
+    window.location.href = 'https://7ztjdgzh3e.execute-api.ap-southeast-2.amazonaws.com/connect/strava/redirect?callback=http://localhost:4200/login'
   }
 
-  public hasValidAccessToken() {
-    return this.oauthService.hasValidAccessToken();
+  public setAuthenticatedUser(token: string) {
+    this.isAuthenticated$.next(true)
+    localStorage.setItem('token', token)
+    this.token$.next(token);
+
+  }
+
+  public clearAuthenticatedUser() {
+    this.isAuthenticated$.next(false)
+    localStorage.removeItem('token')
+    this.token$.next(null)
   }
 
   public logOut() {
-    return this.oauthService.logOut();
+    console.log('logOut')
   }
 
 

@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(
     private authService: AuthService
   ) {
-    this.authService.initAuthLibrary();
     this.isLoggedIn = this.authService.isAuthenticated;
   }
 

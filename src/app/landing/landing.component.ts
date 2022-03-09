@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -11,11 +11,14 @@ export class LandingComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
-    this.route.queryParamMap.subscribe((d) => {
-      console.log(d);
-      
+    this.route.queryParams.subscribe((d) => {
+      if (d.access_token) {
+        this.authService.setAuthenticatedUser(d.access_token);
+        this.router.navigate(['athlete/detail'])
+      }
     })
   }
 

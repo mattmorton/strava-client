@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "strava-client": {
@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "strava-client"
+    }
+  },
+  "defaultProject": "strava-client",
+  "cli": {
+    "analytics": "e80ff38b-9d82-4f20-ac93-6163317758ab"
+  }
 }
