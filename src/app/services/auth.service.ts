@@ -22,7 +22,7 @@ export class AuthService {
   }
   
   public initCodeFlow() {
-    window.location.href = `https://7ztjdgzh3e.execute-api.ap-southeast-2.amazonaws.com/connect/strava/redirect?callback=${environment.host}/login`
+    window.location.href = `${environment.authBaseUrl}/connect/strava/redirect?callback=${environment.hostBaseUrl}/login`
   }
 
   public setAuthenticatedUser(token: string) {
@@ -41,7 +41,5 @@ export class AuthService {
   public logOut() {
     console.log('logOut')
   }
-
-
 
 }
